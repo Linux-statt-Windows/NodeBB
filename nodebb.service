@@ -1,0 +1,33 @@
+#=============================#
+# NodeBB systemd service unit #
+#-----------------------------#
+# https://lsw.io/             #
+# Version:  0.0.1             #
+# Date:     2015/09/24        #
+#=============================#
+
+[Unit]
+Description=NodeBB - Grow your community
+Wants=nginx.service
+# Causes NodeBB to stop whenever nginx fails or terminates.
+# BindsTo=nginx.service
+
+# No Database, no NodeBB
+BindsTo=redis-server.service
+
+[Service]
+PIDFile=/var/www/nodebb/pidfile
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=NodeBB
+Environment=NODE_ENV=production
+WorkingDirectory=/var/www/nodebb
+Type=forking
+ExecStart=/var/www/nodebb/nodebb start
+TimeoutStartSec=30s
+TimeoutStopSec=30s
+KillMode=control-group
+
+[Install]
+WantedBy=multi-user.target
+
