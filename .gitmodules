@@ -1,0 +1,21 @@
+[submodule "node_modules/nodebb-plugin-github-embed"]
+	path = node_modules/nodebb-plugin-github-embed
+	url = https://github.com/Linux-statt-Windows/nodebb-plugin-github-embed
+[submodule "node_modules/nodebb-plugin-embed-videos"]
+	path = node_modules/nodebb-plugin-embed-videos
+	url = https://github.com/Linux-statt-Windows/nodebb-plugin-embed-videos
+[submodule "node_modules/nodebb-plugin-sso-facebook"]
+	path = node_modules/nodebb-plugin-sso-facebook
+	url = https://github.com/Linux-statt-Windows/nodebb-plugin-sso-facebook
+[submodule "node_modules/nodebb-plugin-custom-pages"]
+	path = node_modules/nodebb-plugin-custom-pages
+	url = https://github.com/Linux-statt-Windows/nodebb-plugin-custom-pages
+[submodule "node_modules/nodebb-plugin-emailer-mandrill"]
+	path = node_modules/nodebb-plugin-emailer-mandrill
+	url = https://github.com/Linux-statt-Windows/nodebb-plugin-emailer-mandrill
+[submodule "node_modules/nodebb-plugin-cards"]
+	path = node_modules/nodebb-plugin-cards
+	url = https://github.com/Linux-statt-Windows/nodebb-plugin-cards
+[submodule "node_modules/nodebb-plugin-gallery"]
+	path = node_modules/nodebb-plugin-gallery
+	url = https://github.com/Linux-statt-Windows/nodebb-plugin-gallery
