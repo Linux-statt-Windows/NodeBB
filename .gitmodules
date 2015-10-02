@@ -19,3 +19,6 @@
 [submodule "node_modules/nodebb-plugin-gallery"]
 	path = node_modules/nodebb-plugin-gallery
 	url = https://github.com/Linux-statt-Windows/nodebb-plugin-gallery
+[submodule "node_modules/nodebb-plugin-cash"]
+	path = node_modules/nodebb-plugin-cash
+	url = https://github.com/Linux-statt-Windows/nodebb-plugin-cash
