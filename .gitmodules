@@ -25,6 +25,7 @@
 [submodule "node_modules/nodebb-plugin-topic-badges"]
 	path = node_modules/nodebb-plugin-topic-badges
 	url = https://github.com/Linux-statt-Windows/nodebb-plugin-topic-badges
+	branch = lsw-beta
 [submodule "node_modules/nodebb-plugin-topic-events"]
 	path = node_modules/nodebb-plugin-topic-events
 	url = https://github.com/Linux-statt-Windows/nodebb-plugin-topic-events
