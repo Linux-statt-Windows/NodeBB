@@ -15,7 +15,7 @@ provision.sh
 *.komodoproject
 .DS_Store
 feeds/recent.rss
-
+sl_build.sh
 logs/
 
 pidfile
