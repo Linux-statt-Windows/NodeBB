@@ -24,7 +24,7 @@
 	url = https://github.com/Linux-statt-Windows/nodebb-plugin-cash
 [submodule "node_modules/nodebb-plugin-topic-badges"]
 	path = node_modules/nodebb-plugin-topic-badges
-	url = git@github.com:Linux-statt-Windows/nodebb-plugin-topic-badges.git
+	url = https://github.com/Linux-statt-Windows/nodebb-plugin-topic-badges
 [submodule "node_modules/nodebb-plugin-topic-events"]
 	path = node_modules/nodebb-plugin-topic-events
-	url = git@github.com:Linux-statt-Windows/nodebb-plugin-topic-events.git
+	url = https://github.com/Linux-statt-Windows/nodebb-plugin-topic-events
