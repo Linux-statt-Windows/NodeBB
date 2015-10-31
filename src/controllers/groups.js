@@ -2,11 +2,13 @@
 
 var async = require('async'),
 	nconf = require('nconf'),
+	validator = require('validator'),
 	db = require('../database'),
 	meta = require('../meta'),
 	groups = require('../groups'),
 	user = require('../user'),
 	helpers = require('./helpers'),
+	plugins = require('../plugins'),
 	groupsController = {};
 
 groupsController.list = function(req, res, next) {
@@ -17,6 +19,7 @@ groupsController.list = function(req, res, next) {
 			return next(err);
 		}
 		data.title = '[[pages:groups]]';
+		data.breadcrumbs = helpers.buildBreadcrumbs([{text: '[[pages:groups]]'}]);
 		res.render('groups/list', data);
 	});
 };
@@ -90,17 +93,26 @@ groupsController.details = function(req, res, callback) {
 			}
 
 			results.title = '[[pages:group, ' + results.group.displayName + ']]';
-			res.render('groups/details', results);
+			results.breadcrumbs = helpers.buildBreadcrumbs([{text: '[[pages:groups]]', url: '/groups' }, {text: results.group.displayName}]);
+			
+			plugins.fireHook('filter:group.build', { req: req, res: res, templateData: results }, function (err, results) {
+				if(err) {
+					return callback(err);
+				}
+				res.render('groups/details', results.templateData);
+			});
 		});
 	});
 };
 
 groupsController.members = function(req, res, next) {
+	var groupName;
 	async.waterfall([
 		function(next) {
 			groups.getGroupNameByGroupSlug(req.params.slug, next);
 		},
-		function(groupName, next) {
+		function(_groupName, next) {
+			groupName = _groupName;
 			user.getUsersFromSet('group:' + groupName + ':members', req.uid, 0, 49, next);
 		},
 	], function(err, users) {
@@ -108,10 +120,17 @@ groupsController.members = function(req, res, next) {
 			return next(err);
 		}
 
+		var breadcrumbs = helpers.buildBreadcrumbs([
+			{text: '[[pages:groups]]', url: '/groups' },
+			{text: validator.escape(groupName), url: '/groups/' + req.params.slug},
+			{text: '[[groups:details.members]]'}
+		]);
+
 		res.render('groups/members', {
 			users: users,
 			nextStart: 50,
 			loadmore_display: users.length > 50 ? 'block' : 'hide',
+			breadcrumbs: breadcrumbs
 		});
 	});
 };

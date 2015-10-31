@@ -78,11 +78,10 @@ function accountRoutes(app, middleware, controllers) {
 function userRoutes(app, middleware, controllers) {
 	var middlewares = [middleware.checkGlobalPrivacySettings];
 
-	setupPageRoute(app, '/users', middleware, middlewares, controllers.users.redirectToOnlineUsers);
+	setupPageRoute(app, '/users', middleware, middlewares, controllers.users.getUsersSortedByJoinDate);
 	setupPageRoute(app, '/users/online', middleware, middlewares, controllers.users.getOnlineUsers);
 	setupPageRoute(app, '/users/sort-posts', middleware, middlewares, controllers.users.getUsersSortedByPosts);
 	setupPageRoute(app, '/users/sort-reputation', middleware, middlewares, controllers.users.getUsersSortedByReputation);
-	setupPageRoute(app, '/users/latest', middleware, middlewares, controllers.users.getUsersSortedByJoinDate);
 	setupPageRoute(app, '/users/search', middleware, middlewares, controllers.users.getUsersForSearch);
 	setupPageRoute(app, '/users/map', middleware, middlewares, controllers.users.getMap);
  }
@@ -100,7 +99,8 @@ module.exports = function(app, middleware) {
 	var router = express.Router(),
 		pluginRouter = express.Router(),
 		authRouter = express.Router(),
-		relativePath = nconf.get('relative_path');
+		relativePath = nconf.get('relative_path'),
+		ensureLoggedIn = require('connect-ensure-login');
 
 	pluginRouter.render = function() {
 		app.render.apply(app, arguments);
@@ -112,11 +112,9 @@ module.exports = function(app, middleware) {
 
 	app.use(middleware.maintenanceMode);
 
-	app.all(relativePath + '/api/?*', middleware.prepareAPI);
-	app.all(relativePath + '/api/admin/?*', middleware.isAdmin);
-
-	var ensureLoggedIn = require('connect-ensure-login');
-	app.all(relativePath + '/admin/?*', ensureLoggedIn.ensureLoggedIn(nconf.get('relative_path') + '/login?local=1'), middleware.applyCSRF, middleware.isAdmin);
+	app.all(relativePath + '(/api|/api/*?)', middleware.prepareAPI);
+	app.all(relativePath + '(/api/admin|/api/admin/*?)', middleware.isAdmin);
+	app.all(relativePath + '(/admin|/admin/*?)', ensureLoggedIn.ensureLoggedIn(nconf.get('relative_path') + '/login?local=1'), middleware.applyCSRF, middleware.isAdmin);
 
 	adminRoutes(router, middleware, controllers);
 	metaRoutes(router, middleware, controllers);
@@ -208,11 +206,11 @@ function handleErrors(app, middleware) {
 			return res.sendStatus(403);
 		}
 
-		winston.error(req.path + '\n', err.stack);
-
 		if (parseInt(err.status, 10) === 302 && err.path) {
 			return res.locals.isAPI ? res.status(302).json(err.path) : res.redirect(err.path);
 		}
+
+		winston.error(req.path + '\n', err.stack);
 
 		res.status(err.status || 500);
 
