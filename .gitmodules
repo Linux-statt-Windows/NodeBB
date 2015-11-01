@@ -46,3 +46,7 @@
 	path = node_modules/nodebb-plugin-custom-homepage
 	url = https://github.com/Linux-statt-Windows/nodebb-plugin-custom-homepage.git
 	branch = lsw-beta
+[submodule "node_modules/nodebb-theme-persona"]
+	path = node_modules/nodebb-theme-persona
+	url = https://github.com/Linux-statt-Windows/nodebb-theme-persona.git
+	branch = lsw-beta
