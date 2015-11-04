@@ -50,3 +50,6 @@
 	path = node_modules/nodebb-theme-persona
 	url = https://github.com/Linux-statt-Windows/nodebb-theme-persona.git
 	branch = lsw-beta
+[submodule "node_modules/nodebb-plugin-write-api"]
+	path = node_modules/nodebb-plugin-write-api
+	url = https://github.com/Linux-statt-Windows/nodebb-plugin-write-api.git
