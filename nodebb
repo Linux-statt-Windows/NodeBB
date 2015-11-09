@@ -117,10 +117,11 @@ switch(process.argv[2]) {
 
 	case 'upgrade':
 		async.series([
-			function(next) {
+			// skip npm upgrade; dunno why, but fcks up my modules
+			/*function(next) {
 				process.stdout.write('1. '.bold + 'Bringing base dependencies up to date... '.yellow);
 				require('child_process').execFile('/usr/bin/env', ['npm', 'i', '--production'], next);
-			},
+			},*/
 			function(next) {
 				process.stdout.write('OK\n'.green);
 				process.stdout.write('2. '.bold + 'Updating NodeBB data store schema.\n'.yellow);

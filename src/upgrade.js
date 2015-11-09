@@ -5,6 +5,7 @@ var db = require('./database'),
 	winston = require('winston'),
 	fs = require('fs'),
 	path = require('path'),
+	S = require('string'),
 
 	User = require('./user'),
 	Topics = require('./topics'),
@@ -486,6 +487,48 @@ Upgrade.upgrade = function(callback) {
 				winston.info('[2015/08/18] Creating children category sorted sets skipped');
 				next();
 			}
+		},
+		// 0.6.2 encodes HTML special characters, 0.8.2 doesn't
+		function(next) {
+			winston.info('[2015/11/09] HTML decoding users profile fields');
+			db.getSortedSetRangeWithScores('username:uid',0, -1, function (err, userids) {
+				if (err) {
+					winston.error(err);
+					return next(err);
+				}
+				var keys = userids.map(function(userdata) {
+					return 'user:' + userdata.score;
+				});
+				db.getObjects(keys, function(err, users) {
+					if (err) {
+						return next(err);
+					}
+					async.each(users, function(user, eachNext) {
+						var cb = (user === users[users.length - 1]) ? next : eachNext;
+						var keys = Object.keys(user);
+						var modified = '';
+						var orig = '';
+						for (var i in keys) {
+							// just in case ^_^
+							if (keys[i] === 'password') {
+								continue;
+							}
+							orig = user[keys[i]];
+							modified = S(orig).decodeHTMLEntities().s;
+							if (orig !== modified) {
+								winston.info('[2015/11/09] Decoding ' + keys[i] + ' for user ' + user['userslug'] + '(' + user['uid'] + ')');
+								updatesMade = true;
+								db.setObjectField('user:' + user.uid, keys[i], modified, function(err) {
+									if (err) {
+										return winston.error(err);
+									}
+								});
+							}
+						}
+						return cb();
+					});
+				});
+			});
 		}
 
 
