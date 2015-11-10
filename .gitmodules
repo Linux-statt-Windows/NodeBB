@@ -1,55 +1,56 @@
-[submodule "node_modules/nodebb-plugin-github-embed"]
+[submodule "github-embed"]
 	path = node_modules/nodebb-plugin-github-embed
 	url = https://github.com/Linux-statt-Windows/nodebb-plugin-github-embed
 	branch = lsw-beta
-[submodule "node_modules/nodebb-plugin-embed-videos"]
+[submodule "embed-videos"]
 	path = node_modules/nodebb-plugin-embed-videos
 	url = https://github.com/Linux-statt-Windows/nodebb-plugin-embed-videos
 	branch = lsw-beta
-[submodule "node_modules/nodebb-plugin-sso-facebook"]
+[submodule "sso-facebook"]
 	path = node_modules/nodebb-plugin-sso-facebook
 	url = https://github.com/Linux-statt-Windows/nodebb-plugin-sso-facebook
 	branch = lsw-beta
-[submodule "node_modules/nodebb-plugin-custom-pages"]
+[submodule "custom-pages"]
 	path = node_modules/nodebb-plugin-custom-pages
 	url = https://github.com/Linux-statt-Windows/nodebb-plugin-custom-pages
 	branch = lsw-beta
-[submodule "node_modules/nodebb-plugin-emailer-mandrill"]
+[submodule "emailer-mandrill"]
 	path = node_modules/nodebb-plugin-emailer-mandrill
 	url = https://github.com/Linux-statt-Windows/nodebb-plugin-emailer-mandrill
 	branch = lsw-beta
-[submodule "node_modules/nodebb-plugin-cards"]
+[submodule "plugin-cards"]
 	path = node_modules/nodebb-plugin-cards
 	url = https://github.com/Linux-statt-Windows/nodebb-plugin-cards
 	branch = lsw-beta
-[submodule "node_modules/nodebb-plugin-gallery"]
+[submodule "gallery"]
 	path = node_modules/nodebb-plugin-gallery
 	url = https://github.com/Linux-statt-Windows/nodebb-plugin-gallery
 	branch = lsw-beta
-[submodule "node_modules/nodebb-plugin-cash"]
+[submodule "cash"]
 	path = node_modules/nodebb-plugin-cash
 	url = https://github.com/Linux-statt-Windows/nodebb-plugin-cash
 	branch = lsw-beta
-[submodule "node_modules/nodebb-plugin-topic-badges"]
+[submodule "topic-badges"]
 	path = node_modules/nodebb-plugin-topic-badges
 	url = https://github.com/Linux-statt-Windows/nodebb-plugin-topic-badges
 	branch = lsw-beta
-[submodule "node_modules/nodebb-plugin-topic-events"]
+[submodule "topic-events"]
 	path = node_modules/nodebb-plugin-topic-events
 	url = https://github.com/Linux-statt-Windows/nodebb-plugin-topic-events
 	branch = lsw-beta
-[submodule "node_modules/nodebb-plugin-sso-github"]
+[submodule "sso-github"]
 	path = node_modules/nodebb-plugin-sso-github
 	url = https://github.com/Linux-statt-Windows/nodebb-plugin-sso-github.git
 	branch = lsw-beta
-[submodule "node_modules/nodebb-plugin-custom-homepage"]
+[submodule "custom-homepage"]
 	path = node_modules/nodebb-plugin-custom-homepage
 	url = https://github.com/Linux-statt-Windows/nodebb-plugin-custom-homepage.git
 	branch = lsw-beta
-[submodule "node_modules/nodebb-theme-persona"]
+[submodule "theme-persona"]
 	path = node_modules/nodebb-theme-persona
 	url = https://github.com/Linux-statt-Windows/nodebb-theme-persona.git
 	branch = lsw-beta
-[submodule "node_modules/nodebb-plugin-write-api"]
+[submodule "write-api"]
 	path = node_modules/nodebb-plugin-write-api
 	url = https://github.com/Linux-statt-Windows/nodebb-plugin-write-api.git
+	branch = lsw-beta
